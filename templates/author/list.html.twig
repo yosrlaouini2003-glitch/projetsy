@@ -1,0 +1,66 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Author list!
+{% endblock %}
+
+{% block body %}
+	<style>
+		.example-wrapper {
+			margin: 1em auto;
+			max-width: 800px;
+			width: 95%;
+			font: 18px / 1.5 sans-serif;
+		}
+		.example-wrapper code {
+			background: #F5F5F5;
+			padding: 2px 6px;
+		}
+	</style>
+
+	<div class="example-wrapper">
+		<a href="{{ path('add_author_form') }}" class="btn btn-primary">Add New Author</a>
+
+		{% if authorsList is defined and authorsList is not empty %}
+			<table border="1">
+				<tr>
+					<th>Id</th>
+					<th>UserNAme</th>
+					<th>email</th>
+					<th>nb_books</th>
+				</tr>
+				{% set total=0 %}
+				{% for author in authorsList %}
+
+					<tr>
+						<td>{{author.id}}</td>
+						<td>{{author.name | upper}}</td>
+						<td>{{author.email}}</td>
+						<td>{{author.nbbook}}</td>
+						<td>
+							<a href="{{path('author_details',{'id':author.id})}}">details</a> |
+							<a href="{{path('edit_author_form',{'id':author.id})}}">edit</a> |
+							<a href="{{path('delete_author',{'id':author.id})}}">delete</a>
+						</td>
+
+						{% set total= total + author.nbbook %}
+					</tr>
+				{% endfor %}
+
+			</table>
+
+		{% else %}
+			<h1>
+				vérifer votre tableau
+			</h1>
+
+		{% endif %}
+
+		<h1>
+			le tableau contient
+			{{authorsList| length}}
+			autheurs avec
+			{{ total}}
+			livres</h1>
+
+	</div>
+{% endblock %}

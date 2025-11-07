@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Détails de l'auteur{% endblock %}
+
+{% block body %}
+    {% if author %}
+        <div style="text-align:center;">
+           
+            <h2>{{ author.name }}</h2>
+            <p><strong>Email :</strong> {{ author.email }}</p>
+            <p><strong>Nombre de livres :</strong> {{ author.nbbook }}</p>
+            <a href="{{ path('author_list') }}">← Retour à la liste</a>
+        </div>
+    {% else %}
+        <h2 style="text-align:center; color:red;">Auteur introuvable.</h2>
+        <a href="{{ path('author_list') }}">← Retour à la liste</a>
+    {% endif %}
+{% endblock %}

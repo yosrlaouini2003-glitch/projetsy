@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Book Details
+{% endblock %}
+
+{% block body %}
+	<style>
+		.example-wrapper {
+			margin: 1em auto;
+			max-width: 800px;
+			width: 95%;
+			font: 18px / 1.5 sans-serif;
+		}
+		.example-wrapper code {
+			background: #F5F5F5;
+			padding: 2px 6px;
+		}
+	</style>
+
+	<div class="example-wrapper">
+		<h1>Book Details</h1>
+
+		<p><strong>ID:</strong> {{ book.id }}</p>
+		<p><strong>Title:</strong> {{ book.titre }}</p>
+		<p><strong>Publication Date:</strong> {{ book.publicationDate|date('Y-m-d') }}</p>
+		<p><strong>Published:</strong> {{ book.published ? 'Yes' : 'No' }}</p>
+		<p><strong>Author:</strong> {{ book.author.name }}</p>
+
+		<a href="{{ path('book_list') }}" class="btn btn-secondary">Back to List</a>
+	</div>
+{% endblock %}

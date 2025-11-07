@@ -1,0 +1,59 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Book list!
+{% endblock %}
+
+{% block body %}
+	<style>
+		.example-wrapper {
+			margin: 1em auto;
+			max-width: 800px;
+			width: 95%;
+			font: 18px / 1.5 sans-serif;
+		}
+		.example-wrapper code {
+			background: #F5F5F5;
+			padding: 2px 6px;
+		}
+	</style>
+
+	<div class="example-wrapper">
+		<a href="{{ path('add_book_form') }}" class="btn btn-primary">Add New Book</a>
+
+		{% if booksList is defined and booksList is not empty %}
+			<table border="1">
+				<tr>
+					<th>Id</th>
+					<th>Title</th>
+					<th>Publication Date</th>
+					<th>Published</th>
+					<th>Author</th>
+				</tr>
+				{% for book in booksList %}
+					<tr>
+						<td>{{book.id}}</td>
+						<td>{{book.titre}}</td>
+						<td>{{book.publicationDate|date('Y-m-d')}}</td>
+						<td>{{book.published ? 'Yes' : 'No'}}</td>
+						<td>{{book.author.name}}</td>
+						<td>
+							<a href="{{path('book_details',{'id':book.id})}}">details</a> |
+							<a href="{{path('edit_book_form',{'id':book.id})}}">edit</a> |
+							<a href="{{path('delete_book',{'id':book.id})}}">delete</a>
+						</td>
+					</tr>
+				{% endfor %}
+			</table>
+		{% else %}
+			<h1>
+				Vérifier votre tableau
+			</h1>
+		{% endif %}
+
+		<h1>
+			Le tableau contient
+			{{booksList| length}}
+			livres
+		</h1>
+	</div>
+{% endblock %}

@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	Show!
+{% endblock %}
+
+{% block body %}
+	<h1>
+		{{ "Service :" ~ className | upper}}</h1>
+
+	{# déclaration de variable 
+	{% set pi= 3.14 %}
+	{{pi}}
+	
+	#}
+	{% set tableau =[{'id': 1, 'name': 'ali'},{'id': 2, 'name': 'eya'}]  %}
+
+	{% if tableau is not empty %}
+		<p>
+			ok!!!!
+		</p>
+	{% endif %}
+{% endblock %}
